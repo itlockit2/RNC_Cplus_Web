@@ -45,7 +45,7 @@
 								<li><a href="./2_cplus1.html">2학년C++</a></li>
 							</ul>
 						</li>
-						<li><a href="#">회원현황</a></li>
+						<li><a href="./member.php">회원현황</a></li>
 					</ul>
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
@@ -66,6 +66,7 @@
 				</div>
 			</div>
 		</nav>
+		
 		<div class="container">
 			<div class="jumbotron">
 				<h1 class="text-center">RNC C++ Coding</h1>
