@@ -32,17 +32,17 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>					
-					<a class="navbar-brand" href="./index.html">RNC C++</a>
+					<a class="navbar-brand" href="./index.php">RNC C++</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="./index.html">소개<span class="sr-only"></span></a></li>
+						<li><a href="./index.php">소개<span class="sr-only"></span></a></li>
 						<li><a href="#"> 강사진</a></li>
 						<li class="active" class="dropdown">
-							<a href="./index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
+							<a href="./index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="./1_cplus1.html">1학년C++</a></li>
-								<li><a href="./2_cplus1.html">2학년C++</a></li>
+								<li><a href="./1_cplus1.php">1학년C++</a></li>
+								<li><a href="./2_cplus1.php">2학년C++</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -53,7 +53,7 @@
 						<button type="submit" class="btn btn-default">검색</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="./resourceCenter.html"> 자료실 </a></li>
+						<li><a href="./resourceCenter.php"> 자료실 </a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -87,12 +87,12 @@
 						</thead>
 						<tbody class="lecture-table">
 							<tr>
-								<td><a href="./2_cplus1.html">1</a></td>
-								<td><a href="./2_cplus1.html">제1강 클래스란 무엇인가?</a></td>
+								<td><a href="./2_cplus1.php">1</a></td>
+								<td><a href="./2_cplus1.php">제1강 클래스란 무엇인가?</a></td>
 							</tr>
 							<tr>
-								<td><a href="./2_cplus2.html">2</a></td>
-								<td><a href="./2_cplus2.html">제2강 클래스란 무엇인가? -2- </a></td>
+								<td><a href="./2_cplus2.php">2</a></td>
+								<td><a href="./2_cplus2.php">제2강 클래스란 무엇인가? -2- </a></td>
 							</tr>
 						</tbody>
 					</table>

@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+	$conn = mysqli_connect("localhost","root","134330","rnc_cplus");
+	$lecture_number = 11;
+?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -7,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="./style.css">
 		<style type="text/css">
-			@font-face {
+		@font-face {
 				    font-family: BM JUA;
 				    src: url('./fonts/BM-JUA.eot');
 				    src: url('./fonts/BM-JUA?#iefix') format('embedded-opentype'),
@@ -29,19 +33,20 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>					
-					<a class="navbar-brand" href="./index.html">RNC C++</a>
+					<a class="navbar-brand" href="./index.php">RNC C++</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="./index.html">소개<span class="sr-only"></span></a></li>
+						<li class="active"><a href="./index.php">소개<span class="sr-only"></span></a></li>
 						<li><a href="#"> 강사진</a></li>
-						<li class="active" class="dropdown">
-							<a href="./index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
+						<li class="dropdown">
+							<a href="./index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="./1_cplus1.html">1학년C++</a></li>
-								<li><a href="./2_cplus1.html">2학년C++</a></li>
+								<li><a href="./1_cplus1.php">1학년C++</a></li>
+								<li><a href="./2_cplus1.php">2학년C++</a></li>
 							</ul>
 						</li>
+						<li><a href="./member.php">회원현황</a></li>
 					</ul>
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
@@ -50,7 +55,7 @@
 						<button type="submit" class="btn btn-default">검색</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						s
+						<li><a href="./resourceCenter.php"> 자료실 </a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -83,22 +88,20 @@
 							</tr>
 						</thead>
 						<tbody class="lecture-table">
-							<tr>
-								<td><a href="./cplus1.html">1</a></td>
-								<td><a href="./cplus1.html">제1강 C++이란 무엇인가?</a></td>
-							</tr>
-							<tr>
-								<td><a href="./1_cplus2.html">2</a></td>
-								<td><a href="./1_cplus2.html">제2강 변수와 자료형</a></td>
-							</tr>
-							<tr>
-								<td><a href="./1_cplus3.html">3</a></td>
-								<td><a href="./1_cplus3.html">연산자와 if문</a></td>
-							</tr>
-							<tr>
-								<td><a href="./1_cplus4.html">4</a></td>
-								<td><a href="./1_cplus4.html">반복문 while과 for</a></td>
-							</tr>
+							<?php
+							$count = 1;
+							$sql = "SELECT title,rink FROM lecture WHERE grade=1 ORDER BY no";
+							$result = mysqli_query($conn,$sql);
+							
+							while($row = mysqli_fetch_array($result)){
+								
+								echo"<tr>";	
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo $count; echo"</a></td>"; 
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo"{$row['title']}"; echo"</a></td>";
+									$count++;
+								echo"</tr>";
+							}
+							?>
 						</tbody>
 					</table>
 				</div>
@@ -106,17 +109,42 @@
 		</div>
 			<div class="row">
 				<div class="col-sm-12">
-					<h1>제1강 C++이란 무엇인가?</h1>
+					<?php
+					$count = 1;
+					$sql = "SELECT title FROM lecture WHERE lecture_no=$lecture_number";
+					$result = mysqli_query($conn,$sql);
+					
+					while($row = mysqli_fetch_array($result)){
+						echo "<h1>"; echo"{$row['title']}"; echo"</h1>";
+					}
+					?>
 					<hr>
 				</div>
 				<div class="col-sm-12">
-					<iframe src="https://onedrive.live.com/embed?cid=118B9FB4DD251EA4&resid=118B9FB4DD251EA4%21113&authkey=AIaLq79Ftr3OqDI&em=2" width="1129" height="658" frameborder="0" scrolling="no"></iframe>
+							<?php
+							$sql = "SELECT link FROM powerpoint WHERE lecture_no =$lecture_number";
+							$result = mysqli_query($conn,$sql);
+							
+							while($row = mysqli_fetch_array($result)){
+								echo "<iframe src="; echo "'{$row['link']}' width='1129' height='658' frameborder='0' scrolling='no'>";
+								echo "</iframe>";
+							}
+							?>
 				</div>
 				<div class="col-sm-12">
 					<h3>제1강 예제 코드</h3>
-					<hr>
-					<div class="colorscripter-code" style="color:#010101; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important; overflow:auto"><table class="colorscripter-code-table" style="margin:0; padding:0; border:none; background-color:#fafafa; border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px; border-right:2px solid #e5e5e5"><div style="margin:0; padding:0; word-break:normal; text-align:right; color:#666; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div></div></td><td style="padding:6px 0"><div style="margin:0; padding:0; color:#010101; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0086b3">#include</span>&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">&lt;</span>iostream<span style="color:#ff3399"></span><span style="color:#a71d5d">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#066de2">int</span>&nbsp;main()&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#066de2">std</span>::<span style="color:#066de2">cout</span>&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">&lt;</span><span style="color:#ff3399"></span><span style="color:#a71d5d">&lt;</span>&nbsp;<span style="color:#63a35c">"Hello&nbsp;World!"</span>&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">&lt;</span><span style="color:#ff3399"></span><span style="color:#a71d5d">&lt;</span>&nbsp;<span style="color:#066de2">std</span>::<span style="color:#066de2">endl</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;system(<span style="color:#63a35c">"pause"</span>);</div><div style="padding:0 6px; white-space:pre; line-height:130%">}</div></div><div style="text-align:right; margin-top:-13px; margin-right:5px; font-size:9px; font-style:italic"><a href="http://colorscripter.com/info#e" target="_blank" style="color:#e5e5e5; text-decoration:none">Colored by Color Scripter</a></div></td><td style="vertical-align:bottom; padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none; color:white"><span style="font-size:9px; word-break:normal; background-color:#e5e5e5; color:white; border-radius:10px; padding:1px">cs</span></a></td></tr></table></div>
-					<hr>
+							<?php
+							$sql = "SELECT title,rink FROM code WHERE lecture_no =$lecture_number";
+							$result = mysqli_query($conn,$sql);
+								echo "<hr>";
+							while($row = mysqli_fetch_array($result)){
+								echo "<li style='font-size : 20px'>"; echo "{$row['title']}"; echo "</li>";
+								echo "<br>";
+								echo "{$row['rink']}";
+								echo "<br>";
+								echo "<hr>";
+							}
+							?>
 				</div>
 				<div class="col-sm-12">
 					<h3>백준 문제 풀러 가기 </h3>

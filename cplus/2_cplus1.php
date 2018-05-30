@@ -32,17 +32,17 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>					
-					<a class="navbar-brand" href="./index.html">RNC C++</a>
+					<a class="navbar-brand" href="./index.php">RNC C++</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="./index.html">소개<span class="sr-only"></span></a></li>
+						<li><a href="./index.php">소개<span class="sr-only"></span></a></li>
 						<li><a href="#"> 강사진</a></li>
 						<li class="active" class="dropdown">
-							<a href="./index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
+							<a href="./index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="./1_cplus1.html">1학년C++</a></li>
-								<li><a href="./2_cplus1.html">2학년C++</a></li>
+								<li><a href="./1_cplus1.php">1학년C++</a></li>
+								<li><a href="./2_cplus1.php">2학년C++</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -53,7 +53,7 @@
 						<button type="submit" class="btn btn-default">검색</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="./resourceCenter.html"> 자료실 </a></li>
+						<li><a href="./resourceCenter.php"> 자료실 </a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -86,14 +86,20 @@
 							</tr>
 						</thead>
 						<tbody class="lecture-table">
-							<tr>
-								<td><a href="./2_cplus1.html">1</a></td>
-								<td><a href="./2_cplus1.html">제1강 클래스란 무엇인가?</a></td>
-							</tr>
-							<tr>
-								<td><a href="./2_cplus2.html">2</a></td>
-								<td><a href="./2_cplus2.html">제2강 클래스란 무엇인가? -2- </a></td>
-							</tr>
+							<?php
+							$count = 1;
+							$sql = "SELECT title,rink FROM lecture WHERE grade=2 ORDER BY no";
+							$result = mysqli_query($conn,$sql);
+							
+							while($row = mysqli_fetch_array($result)){
+								
+								echo"<tr>";	
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo $count; echo"</a></td>"; 
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo"{$row['title']}"; echo"</a></td>";
+									$count++;
+								echo"</tr>";
+							}
+							?>
 						</tbody>
 					</table>
 				</div>
@@ -120,8 +126,9 @@
 						(4)입력받은 좌표와 거리가 가장 가까운 좌표의 인덱스,좌표값, 거리를 출력하시오.<br><br>
 
 						출력예제
-						<img class="img-responsive" src="./images/1.png">
 					</h3>
+						<img class="img-responsive" src="./images/1.png">
+					
 
 
 					<div class="colorscripter-code" style="color:#010101; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important; overflow:auto"><table class="colorscripter-code-table" style="margin:0; padding:0; border:none; background-color:#fafafa; border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px; border-right:2px solid #e5e5e5"><div style="margin:0; padding:0; word-break:normal; text-align:right; color:#666; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div><div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div><div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div><div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div><div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div><div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div><div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div><div style="line-height:130%">33</div></div></td><td style="padding:6px 0"><div style="margin:0; padding:0; color:#010101; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0086b3">#include</span>&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">&lt;</span>iostream<span style="color:#039C43"></span><span style="color:#ff3399">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0086b3">#include</span>&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">&lt;</span>ctime<span style="color:#039C43"></span><span style="color:#ff3399">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#ff3399">using</span>&nbsp;<span style="color:#ff3399">namespace</span>&nbsp;<span style="color:#0099cc">std</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">//생성할&nbsp;좌표점의&nbsp;개수</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#ff3399">const</span>&nbsp;<span style="color:#0099cc">int</span>&nbsp;pointNum&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">=</span>&nbsp;<span style="color:#308ce5">10</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">//2차원&nbsp;x,y좌표</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#ff3399">const</span>&nbsp;<span style="color:#0099cc">int</span>&nbsp;pointDim&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">=</span>&nbsp;<span style="color:#308ce5">2</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">//실수값을&nbsp;갖는&nbsp;좌표&nbsp;10개를&nbsp;랜덤하게&nbsp;생성&nbsp;10행&nbsp;2열에&nbsp;저장</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#ff3399">void</span>&nbsp;getRandomData(<span style="color:#0099cc">double</span>&nbsp;randomData[][pointDim]);</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">//랜덤하게&nbsp;생성된&nbsp;좌표&nbsp;10개를&nbsp;출력</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#ff3399">void</span>&nbsp;printRandomData(<span style="color:#0099cc">double</span>&nbsp;randomData[][pointDim]);</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">//두&nbsp;좌표&nbsp;(x1,y1)과&nbsp;(x2,y2)사이의&nbsp;거리를&nbsp;계산</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0099cc">double</span>&nbsp;calculateDistance(<span style="color:#0099cc">double</span>&nbsp;x1,&nbsp;<span style="color:#0099cc">double</span>&nbsp;y1,&nbsp;<span style="color:#0099cc">double</span>&nbsp;x2,&nbsp;<span style="color:#0099cc">double</span>&nbsp;y2);</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0099cc">int</span>&nbsp;main()&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0099cc">double</span>&nbsp;randomData[pointNum][pointDim]&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">=</span>&nbsp;{&nbsp;<span style="color:#308ce5">0.</span><span style="color:#308ce5">0</span>&nbsp;};</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0099cc">int</span>&nbsp;minIndex&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">=</span>&nbsp;<span style="color:#308ce5">0</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0099cc">double</span>&nbsp;minDistacle&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">=</span>&nbsp;<span style="color:#308ce5">0</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;getRandomData(randomData);</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;printRandomData(randomData);</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0099cc">cout</span>&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">&lt;</span><span style="color:#039C43"></span><span style="color:#ff3399">&lt;</span>&nbsp;<span style="color:#993333">"Enter&nbsp;the&nbsp;calue&nbsp;of&nbsp;the&nbsp;point(double)&nbsp;x&nbsp;,&nbsp;y&nbsp;"</span>&nbsp;<span style="color:#039C43"></span><span style="color:#ff3399">&lt;</span><span style="color:#039C43"></span><span style="color:#ff3399">&lt;</span>&nbsp;<span style="color:#0099cc">endl</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0099cc">double</span>&nbsp;pointX,&nbsp;pointY;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#999999">//사용자로부터&nbsp;좌표를&nbsp;입력</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#999999">//입력받은&nbsp;좌표와&nbsp;거리가&nbsp;가장&nbsp;가까운&nbsp;좌표의&nbsp;인덱스,&nbsp;좌표값,&nbsp;거리를&nbsp;계산</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#999999">//Display&nbsp;result(인덱스,&nbsp;좌표값,&nbsp;거리를&nbsp;출력)</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">}</div></div><div style="text-align:right; margin-top:-13px; margin-right:5px; font-size:9px; font-style:italic"><a href="http://colorscripter.com/info#e" target="_blank" style="color:#e5e5e5; text-decoration:none">Colored by Color Scripter</a></div></td><td style="vertical-align:bottom; padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none; color:white"><span style="font-size:9px; word-break:normal; background-color:#e5e5e5; color:white; border-radius:10px; padding:1px">cs</span></a></td></tr></table></div>

@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+	$conn = mysqli_connect("localhost","root","134330","rnc_cplus");
+	$lecture_number = 12;
+?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -6,7 +10,7 @@
 		<title>RNC C++ Coding</title>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="./style.css">
-		<style>
+		<style type="text/css">
 		@font-face {
 				    font-family: BM JUA;
 				    src: url('./fonts/BM-JUA.eot');
@@ -17,9 +21,6 @@
 				    font-style: normal;
 					}
 		* {font-family:'BM JUA','배달의민족 주아',sans-serif;}
-		h3{
-			line-height : 2.1;
-			}
 		</style>
 	</head>
 	<body>
@@ -32,19 +33,20 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>					
-					<a class="navbar-brand" href="./index.html">RNC C++</a>
+					<a class="navbar-brand" href="./index.php">RNC C++</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="./index.html">소개<span class="sr-only"></span></a></li>
+						<li class="active"><a href="./index.php">소개<span class="sr-only"></span></a></li>
 						<li><a href="#"> 강사진</a></li>
 						<li class="dropdown">
-							<a href="./index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
+							<a href="./index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="./1_cplus1.html">1학년C++</a></li>
-								<li><a href="./2_cplus1.html">2학년C++</a></li>
+								<li><a href="./1_cplus1.php">1학년C++</a></li>
+								<li><a href="./2_cplus1.php">2학년C++</a></li>
 							</ul>
 						</li>
+						<li><a href="./member.php">회원현황</a></li>
 					</ul>
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
@@ -53,7 +55,7 @@
 						<button type="submit" class="btn btn-default">검색</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="./resourceCenter.html"> 자료실 </a></li>
+						<li><a href="./resourceCenter.php"> 자료실 </a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -70,38 +72,89 @@
     	<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h1 class="panel-title">강의목록</h1>
+						<div class="pull-right">
+						</div>
+					</div>
+					<div class="panel-body">
+						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="강의 제목을 입력하세요." />
+					</div>
+					<table class="table table-hover" id="dev-table">
+						<thead>
+							<tr>
+								<th>number</th>
+								<th>Title</th>
+							</tr>
+						</thead>
+						<tbody class="lecture-table">
+							<?php
+							$count = 1;
+							$sql = "SELECT title,rink FROM lecture WHERE grade=1 ORDER BY no";
+							$result = mysqli_query($conn,$sql);
+							
+							while($row = mysqli_fetch_array($result)){
+								
+								echo"<tr>";	
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo $count; echo"</a></td>"; 
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo"{$row['title']}"; echo"</a></td>";
+									$count++;
+								echo"</tr>";
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 			<div class="row">
 				<div class="col-sm-12">
-					<h1>2017년 프로젝트 보고서 자료</h1>
+					<?php
+					$count = 1;
+					$sql = "SELECT title FROM lecture WHERE lecture_no=$lecture_number";
+					$result = mysqli_query($conn,$sql);
+					
+					while($row = mysqli_fetch_array($result)){
+						echo "<h1>"; echo"{$row['title']}"; echo"</h1>";
+					}
+					?>
 					<hr>
 				</div>
 				<div class="col-sm-12">
+							<?php
+							$sql = "SELECT link FROM powerpoint WHERE lecture_no =$lecture_number";
+							$result = mysqli_query($conn,$sql);
+							
+							while($row = mysqli_fetch_array($result)){
+								echo "<iframe src="; echo "'{$row['link']}' width='1129' height='658' frameborder='0' scrolling='no'>";
+								echo "</iframe>";
+							}
+							?>
 				</div>
 				<div class="col-sm-12">
-					<h3>1학년 라인트레이서</h3>
-					<hr>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/1.hwp"> 1차 보고서_라인트레이서 (while) </a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/2.hwp">1차 보고서_라인트레이서 (2조)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/3.hwp">1차 보고서_라인트레이서 (네버 드랍)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/4.hwp">1차 보고서_라인트레이서 (유하독존)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/5.hwp">1차 보고서_라인트레이서 (이슬톡톡)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/6.hwp">1차 보고서_라인트레이서 (조물조물조)</a> </li>
-					<br>
-					<h3>2학년 RC카, 드론, 객체지향 설계 프로젝트</h3>
-					<hr>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/2grade/1.hwp"> 1차 보고서_RC카 (RnC Car) </a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/2grade/2.hwp">1차 보고서_RC카 (Drive Thru)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/2grade/3.hwp">1차 보고서_드론</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/2grade/4.hwp">1차 보고서_객체지향</a> </li>
-					<br>
-					<h3>3학년 자율주행, 수업블랙박스</h3>
-					<hr>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/3grade/1.hwp">1차 보고서_자율주행 </a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/3grade/2.hwp">(1차 보고서) 소프트 3학년 프로젝트 계획서</a> </li>
-					<br>
+					<h3>제2강 예제 코드</h3>
+							<?php
+							$sql = "SELECT title,rink FROM code WHERE lecture_no =$lecture_number";
+							$result = mysqli_query($conn,$sql);
+							
+							echo "<hr>";
+							while($row = mysqli_fetch_array($result)){
+								echo "<li style='font-size : 20px'>"; echo "{$row['title']}"; echo "</li>";
+								echo "<br>";
+								echo "{$row['rink']}";
+								echo "<br>";
+								echo "<hr>";
+							}
+							?>
 				</div>
+				<div class="col-sm-12">
+					<h3>백준 문제 풀러 가기 </h3>
+					<hr>
+					<h4 class="algorithm"> <a href="https://www.acmicpc.net/problem/1000" target="_blank"><span class="glyphicon glyphicon-pencil"></span>  &nbsp;&nbsp; 1000번 A+B</a></h4>
+				</div>
+				
+			</div>
+		</div>
 
 		<div class="container">
 			<div class="row">
