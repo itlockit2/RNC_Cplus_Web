@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-	mysqli_connect("localhost","root","134330","rnc_cplus")
+	$conn = mysqli_connect("localhost","root","134330","rnc_cplus");
 ?>
 <html>
 	<head>
@@ -32,17 +32,17 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>					
-					<a class="navbar-brand" href="./index.html">RNC C++</a>
+					<a class="navbar-brand" href="./index.php">RNC C++</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="./index.html">소개<span class="sr-only"></span></a></li>
+						<li class="active"><a href="./index.php">소개<span class="sr-only"></span></a></li>
 						<li><a href="#"> 강사진</a></li>
 						<li class="dropdown">
-							<a href="./index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
+							<a href="./index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="./1_cplus1.html">1학년C++</a></li>
-								<li><a href="./2_cplus1.html">2학년C++</a></li>
+								<li><a href="./1_cplus1.php">1학년C++</a></li>
+								<li><a href="./2_cplus1.php">2학년C++</a></li>
 							</ul>
 						</li>
 						<li><a href="./member.php">회원현황</a></li>
@@ -54,7 +54,7 @@
 						<button type="submit" class="btn btn-default">검색</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="./resourceCenter.html"> 자료실 </a></li>
+						<li><a href="./resourceCenter.php"> 자료실 </a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -71,7 +71,7 @@
 			<div class="jumbotron">
 				<h1 class="text-center">RNC C++ Coding</h1>
 				<p class="text-center">이 홈페이지는 신입생들의 C++수업을 원할하게 진행하기 위해 만든 홈페이지 입니다. </p>
-				<p class="text-center"><a href="./cplus1.html" class="btn btn-primary btn-lg" role="button">강의 들으러 가기</a></p>
+				<p class="text-center"><a href="./cplus1.php" class="btn btn-primary btn-lg" role="button">강의 들으러 가기</a></p>
 			</div>
 		</div>
 
