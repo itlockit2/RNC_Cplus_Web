@@ -110,7 +110,6 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<?php
-					$count = 1;
 					$sql = "SELECT title FROM lecture WHERE lecture_no=$lecture_number";
 					$result = mysqli_query($conn,$sql);
 					
