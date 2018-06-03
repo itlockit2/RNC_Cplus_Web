@@ -37,7 +37,6 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="./index.php">소개<span class="sr-only"></span></a></li>
-						<li><a href="#"> 강사진</a></li>
 						<li class="dropdown">
 							<a href="./index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -47,21 +46,8 @@
 						</li>
 						<li><a href="./member.php">회원현황</a></li>
 					</ul>
-					<form class="navbar-form navbar-left">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="내용을 입력하세요.">
-						</div>
-						<button type="submit" class="btn btn-default">검색</button>
-					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="./resourceCenter.php"> 자료실 </a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기 <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">로그인</a></li>
-								<li><a href="#">회원가입</a></li>
-							</ul>
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -71,7 +57,7 @@
 			<div class="jumbotron">
 				<h1 class="text-center">RNC C++ Coding</h1>
 				<p class="text-center">이 홈페이지는 신입생들의 C++수업을 원할하게 진행하기 위해 만든 홈페이지 입니다.</p>
-				<p class="text-center"><a href="./cplus1.php" class="btn btn-primary btn-lg" role="button">강의 들으러 가기</a></p>
+				<p class="text-center"><a href="./1_cplus1.php" class="btn btn-primary btn-lg" role="button">강의 들으러 가기</a></p>
 			</div>
 		</div>
 
