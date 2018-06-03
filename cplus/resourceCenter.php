@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+	$conn = mysqli_connect("localhost","root","134330","rnc_cplus");
+	$year = 2017;
+	$grade = 1;
+?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -78,29 +83,51 @@
 					<hr>
 				</div>
 				<div class="col-sm-12">
-				</div>
-				<div class="col-sm-12">
 					<h3>1학년 라인트레이서</h3>
 					<hr>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/1.hwp"> 1차 보고서_라인트레이서 (while) </a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/2.hwp">1차 보고서_라인트레이서 (2조)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/3.hwp">1차 보고서_라인트레이서 (네버 드랍)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/4.hwp">1차 보고서_라인트레이서 (유하독존)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/5.hwp">1차 보고서_라인트레이서 (이슬톡톡)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/1grade/6.hwp">1차 보고서_라인트레이서 (조물조물조)</a> </li>
-					<br>
-					<h3>2학년 RC카, 드론, 객체지향 설계 프로젝트</h3>
+					<?php
+					
+					$sql = "SELECT team_no,team_name,rink,file_title FROM file WHERE grade=$grade and year=$year ORDER BY team_no";
+					$result = mysqli_query($conn,$sql);
+					
+					while($row = mysqli_fetch_array($result)){
+						echo "<li class='algorithm' style='font-size : 20px'><a href="; echo "'{$row['rink']}'>"; 
+						echo "{$row['team_name']}_"; echo"{$row['file_title']}"; echo "</a></li>";
+						
+					}
+					$grade++;
+					echo "<br>";
+					?>
+					<h3>2학년 RC카 , 드론 , 객체지향 프로그래밍</h3>
 					<hr>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/2grade/1.hwp"> 1차 보고서_RC카 (RnC Car) </a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/2grade/2.hwp">1차 보고서_RC카 (Drive Thru)</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/2grade/3.hwp">1차 보고서_드론</a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/2grade/4.hwp">1차 보고서_객체지향</a> </li>
-					<br>
-					<h3>3학년 자율주행, 수업블랙박스</h3>
+					<?php
+					
+					$sql = "SELECT team_no,team_name,rink,file_title FROM file WHERE grade=$grade and year=$year ORDER BY team_no";
+					$result = mysqli_query($conn,$sql);
+					
+					while($row = mysqli_fetch_array($result)){
+						echo "<li class='algorithm' style='font-size : 20px'><a href="; echo "'{$row['rink']}'>";
+						echo "{$row['team_name']}_"; echo"{$row['file_title']}"; echo "</a></li>";
+						
+					}
+					$grade++;
+					echo "<br>";
+					?>
+					<h3>3학년 자율주행 자동차, 수업 블랙박스 </h3>
 					<hr>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/3grade/1.hwp">1차 보고서_자율주행 </a> </li>
-					<li class="algorithm" style="font-size : 20px"><a href="./files/3grade/2.hwp">(1차 보고서) 소프트 3학년 프로젝트 계획서</a> </li>
-					<br>
+					<?php
+					
+					$sql = "SELECT team_no,team_name,rink,file_title FROM file WHERE grade=$grade and year=$year ORDER BY team_no";
+					$result = mysqli_query($conn,$sql);
+					
+					while($row = mysqli_fetch_array($result)){
+						echo "<li class='algorithm' style='font-size : 20px'><a href="; echo "'{$row['rink']}'>";
+						echo "{$row['team_name']}_"; echo"{$row['file_title']}"; echo "</a></li>";
+						
+					}
+					$grade++;
+					echo "<br>";
+					?>
 				</div>
 
 		<div class="container">

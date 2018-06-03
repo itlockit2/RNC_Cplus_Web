@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 	$conn = mysqli_connect("localhost","root","134330","rnc_cplus");
+	$lecture_number = 21;
 ?>
 <html>
 	<head>
@@ -68,25 +69,92 @@
 		</nav>
 		
 		<div class="container">
-			<div class="jumbotron">
-				<h1 class="text-center">RNC C++ Coding</h1>
-				<p class="text-center">이 홈페이지는 신입생들의 C++수업을 원할하게 진행하기 위해 만든 홈페이지 입니다.</p>
-				<p class="text-center"><a href="./cplus1.php" class="btn btn-primary btn-lg" role="button">강의 들으러 가기</a></p>
+    	<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h1 class="panel-title">강의목록</h1>
+						<div class="pull-right">
+						</div>
+					</div>
+					<div class="panel-body">
+						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="강의 제목을 입력하세요." />
+					</div>
+					<table class="table table-hover" id="dev-table">
+						<thead>
+							<tr>
+								<th>number</th>
+								<th>Title</th>
+							</tr>
+						</thead>
+						<tbody class="lecture-table">
+							<?php
+							$count = 1;
+							$sql = "SELECT title,rink FROM lecture WHERE grade=1 ORDER BY no";
+							$result = mysqli_query($conn,$sql);
+							
+							while($row = mysqli_fetch_array($result)){
+								
+								echo"<tr>";	
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo $count; echo"</a></td>"; 
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo"{$row['title']}"; echo"</a></td>";
+									$count++;
+								echo"</tr>";
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-
-		<div class="container">
-		<blockquote class="default">
-		  <h1 style="font-size : 25px"><span class="Cdefault">C++...하....</span></h1>  
-		  <p style="font-size : 20px">C++이 쉽다고 하는 사람과 가까이 하지 말아라, 미쳐있거나 미쳐가고 있는 중이다.</p>
-		</blockquote>
+			<div class="row">
+				<div class="col-sm-12">
+					<?php
+					$count = 1;
+					$sql = "SELECT title FROM lecture WHERE lecture_no=$lecture_number";
+					$result = mysqli_query($conn,$sql);
+					
+					while($row = mysqli_fetch_array($result)){
+						echo "<h1>"; echo"{$row['title']}"; echo"</h1>";
+					}
+					?>
+					<hr>
+				</div>
+				<div class="col-sm-12">
+							<?php
+							$sql = "SELECT link FROM powerpoint WHERE lecture_no =$lecture_number";
+							$result = mysqli_query($conn,$sql);
+							
+							while($row = mysqli_fetch_array($result)){
+								echo "<iframe src="; echo "'{$row['link']}' width='1129' height='658' frameborder='0' scrolling='no'>";
+								echo "</iframe>";
+							}
+							?>
+				</div>
+				<div class="col-sm-12">
+					<h3>제1강 예제 코드</h3>
+							<?php
+							$sql = "SELECT title,rink FROM code WHERE lecture_no =$lecture_number";
+							$result = mysqli_query($conn,$sql);
+								echo "<hr>";
+							while($row = mysqli_fetch_array($result)){
+								echo "<li style='font-size : 20px'>"; echo "{$row['title']}"; echo "</li>";
+								echo "<br>";
+								echo "{$row['rink']}";
+								echo "<br>";
+								echo "<hr>";
+							}
+							?>
+				</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
 					<div id="disqus_thread"></div>
-					<script>
+						<script>
 						/**
 						*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 						*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -98,13 +166,12 @@
 						*/
 						(function() { // DON'T EDIT BELOW THIS LINE
 						var d = document, s = d.createElement('script');
-						s.src = 'https://cpluscoding2.disqus.com/embed.js';
+						s.src = 'https://webeopeulrikeisyeonmandeulgisueob-17.disqus.com/embed.js';
 						s.setAttribute('data-timestamp', +new Date());
 						(d.head || d.body).appendChild(s);
 						})();
 						</script>
 						<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-				</div>
 			</div>
 		</div>                            
                                                     
@@ -153,5 +220,56 @@
 		})();
 		</script>
 		<!--End of Tawk.to Script-->
+		<script type="text/javascript">
+			(function(){
+    'use strict';
+	var $ = jQuery;
+	$.fn.extend({
+		filterTable: function(){
+			return this.each(function(){
+				$(this).on('keyup', function(e){
+					$('.filterTable_no_results').remove();
+					var $this = $(this), 
+                        search = $this.val().toLowerCase(), 
+                        target = $this.attr('data-filters'), 
+                        $target = $(target), 
+                        $rows = $target.find('tbody tr');
+                        
+					if(search == '') {
+						$rows.show(); 
+					} else {
+						$rows.each(function(){
+							var $this = $(this);
+							$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+						})
+						if($target.find('tbody tr:visible').size() === 0) {
+							var col_count = $target.find('tr').first().find('td').size();
+							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+							$target.find('tbody').append(no_results);
+						}
+					}
+				});
+			});
+		}
+	});
+	$('[data-action="filter"]').filterTable();
+})(jQuery);
+
+$(function(){
+    // attach table filter plugin to inputs
+	$('[data-action="filter"]').filterTable();
+	
+	$('.container').on('click', '.panel-heading span.filter', function(e){
+		var $this = $(this), 
+			$panel = $this.parents('.panel');
+		
+		$panel.find('.panel-body').slideToggle();
+		if($this.css('display') != 'none') {
+			$panel.find('.panel-body input').focus();
+		}
+	});
+	$('[data-toggle="tooltip"]').tooltip();
+})
+		</script>
 	</body>
 </html>
