@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 	$conn = mysqli_connect("localhost","root","134330","rnc_cplus");
+	$lecture_number = 15;
 ?>
 <html>
 	<head>
@@ -37,14 +38,14 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li><a href="./index.php">소개<span class="sr-only"></span></a></li>
-						<li class="dropdown">
+						<li class="active"  class="dropdown">
 							<a href="./index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="./1_cplus1.php">1학년C++</a></li>
 								<li><a href="./2_cplus1.php">2학년C++</a></li>
 							</ul>
 						</li>
-						<li class="active"><a href="./member.php">회원현황</a></li>
+						<li><a href="./member.php">회원현황</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="./resourceCenter.php"> 자료실 </a></li>
@@ -58,7 +59,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h1 class="panel-title">회원목록</h1>
+						<h1 class="panel-title">강의목록</h1>
 						<div class="pull-right">
 						</div>
 					</div>
@@ -68,30 +69,21 @@
 					<table class="table table-hover" id="dev-table">
 						<thead>
 							<tr>
-								<th>순번</th>
-								<th>학번</th>
-								<th>학년</th>
-								<th>전공</th>
-								<th>이름</th>
-								<th>연락처</th>
-								<th>비고</th>
+								<th>number</th>
+								<th>Title</th>
 							</tr>
 						</thead>
 						<tbody class="lecture-table">
 							<?php
 							$count = 1;
-							$sql = "SELECT id,grade,major,name,phone,etc FROM member ORDER BY grade DESC ,major DESC";
+							$sql = "SELECT title,rink FROM lecture WHERE grade=1 ORDER BY no";
 							$result = mysqli_query($conn,$sql);
 							
 							while($row = mysqli_fetch_array($result)){
-								echo"<tr>";
-									echo"<td>"; echo $count; echo "</td>";
-									echo"<td>{$row['id']}</td>";
-									echo"<td>{$row['grade']}</td>";
-									echo"<td>{$row['major']}</td>";
-									echo"<td>{$row['name']}</td>";
-									echo"<td>{$row['phone']}</td>";
-									echo"<td>{$row['etc']}</td>";
+								
+								echo"<tr>";	
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo $count; echo"</a></td>"; 
+									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo"{$row['title']}"; echo"</a></td>";
 									$count++;
 								echo"</tr>";
 							}
@@ -101,7 +93,52 @@
 				</div>
 			</div>
 		</div>
-			
+			<div class="row">
+				<div class="col-sm-12">
+					<?php
+					$count = 1;
+					$sql = "SELECT title FROM lecture WHERE lecture_no=$lecture_number";
+					$result = mysqli_query($conn,$sql);
+					
+					while($row = mysqli_fetch_array($result)){
+						echo "<h1>"; echo"{$row['title']}"; echo"</h1>";
+					}
+					?>
+					<hr>
+				</div>
+				<div class="col-sm-12">
+							<?php
+							$sql = "SELECT link FROM powerpoint WHERE lecture_no =$lecture_number";
+							$result = mysqli_query($conn,$sql);
+							
+							while($row = mysqli_fetch_array($result)){
+								echo "{$row['link']}";
+							}
+							?>
+				</div>
+				<div class="col-sm-12">
+					<h3>제4강 예제 코드</h3>
+							<?php
+							$sql = "SELECT title,rink FROM code WHERE lecture_no =$lecture_number";
+							$result = mysqli_query($conn,$sql);
+							
+							echo "<hr>";
+							while($row = mysqli_fetch_array($result)){
+								echo "<li style='font-size : 20px'>"; echo "{$row['title']}"; echo "</li>";
+								echo "<br>";
+								echo "{$row['rink']}";
+								echo "<br>";
+								echo "<hr>";
+							}
+							?>
+				</div>
+				<div class="col-sm-12">
+					<h3>백준 문제 풀러 가기 </h3>
+					<hr>
+					<h4 class="algorithm"> <a href="https://www.acmicpc.net/problem/10039" target="_blank"><span class="glyphicon glyphicon-pencil"></span>  &nbsp;&nbsp; 10039번 평균 점수</a></h4>
+				</div>
+				
+			</div>
 		</div>
 
 		<div class="container">
