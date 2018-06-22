@@ -33,6 +33,11 @@ C++ 수업을 진행하면서 수업에 관련된 자료들을 쉽게 공유하�
    
 ## 3. 테이블 구성
  * Lecture Table 
+   * 수업에 관한 정보가 담겨져 있는 테이블 입니다.
+   * grade : 어떤 학년을 위한 수업인지 학년에 대한 정보가 담겨 있습니다.
+   * lecture_no : 강의테이블을 구별하는 lecture_no 입니다.
+   * title : 강의 제목이 담겨져 있습니다.
+   * rink : 해당 강의 홈페이지의 위치가 담겨져 있습니다.
 ~~~ 
 CREATE TABLE `lecture` (
 `no` int(10) NOT NULL,
@@ -43,6 +48,12 @@ CREATE TABLE `lecture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ~~~
  * Code Table
+   * 수업에 쓰이는 예제코드에 대한 정보가 담겨져있는 테이블입니다.
+   * lecture_no : Lecture 테이블의 lecture_no을 외래키로 참조합니다.
+   * title : 예제코드 제목이 담겨져 있습니다.
+   * contents : 예제코드이 어떤 내용을 가지고 있는지에 대한 정보가 담겨져 있습니다.
+   * rink : 예제코드의 위치가 담겨져 있습니다.
+   * image_file : 예제코드와 관련되어 있는 이미지파일에 대한 정보가 담겨져 있습니다.
 ~~~
 CREATE TABLE `code` (
   `no` int(10) NOT NULL,
@@ -54,6 +65,9 @@ CREATE TABLE `code` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ~~~
  * powerpoint table
+   * 수업에 쓰이는 powerPoint에 대한 정보가 담겨져있는 테이블입니다.
+   * lecture_no : Lecture 테이블의 lecture_no을 외래키로 참조합니다.
+   * link : 해당 파워포인트의 주소가 담겨져 있습니다.
 ~~~~
 CREATE TABLE `powerpoint` (
   `no` int(10) NOT NULL,
@@ -61,16 +75,13 @@ CREATE TABLE `powerpoint` (
   `link` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ~~~~
- * cources table
-~~~~
-CREATE TABLE `cources` (
-  `no` int(11) NOT NULL,
-  `id` int(10) NOT NULL,
-  `lecture_no` int(10) NOT NULL,
-  `name` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-~~~~
  * member table
+   * 동아리 회원에 대한 정보가 담겨져 있는 테이블입니다.
+   * id : 회원의 학번에 대한 정보가 담겨져 있습니다.
+   * grade : 회원의 학년에 대한 정보가 담겨져 있습니다.
+   * major : 회원의 전공에 대한 정보가 담겨져 있습니다.
+   * name : 회원의 이름에 대한 정보가 담겨져 있습니다.
+   * etc : 부가 정보에 대한 정보가 담겨져 있습니다.
 ~~~~
 CREATE TABLE `member` (
   `no` int(10) NOT NULL,
@@ -78,8 +89,20 @@ CREATE TABLE `member` (
   `grade` int(10) NOT NULL,
   `major` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `phone` text NOT NULL,
   `etc` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+~~~~
+ * cources table
+   * 해당 수업을 듣는 학생에 대한 정보가 담겨져있는 테이블입니다.
+   * id : Member 테이블의 id를 외래키로 참조합니다.
+   * lecture_no : Lecture 테이블의 lecture_no을 외래키로 참조합니다.
+   * name : 학생의 이름이 담겨져 있습니다.
+~~~~
+CREATE TABLE `cources` (
+  `no` int(11) NOT NULL,
+  `id` int(10) NOT NULL,
+  `lecture_no` int(10) NOT NULL,
+  `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ~~~~
 ## 4. ERDiagram
