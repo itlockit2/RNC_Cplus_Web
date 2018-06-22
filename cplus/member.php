@@ -45,6 +45,8 @@
 							</ul>
 						</li>
 						<li class="active"><a href="./member.php">회원현황</a></li>
+						<li><a href="./manage.php">관리</a></li>
+
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="./resourceCenter.php"> 자료실 </a></li>
@@ -80,7 +82,7 @@
 						<tbody class="lecture-table">
 							<?php
 							$count = 1;
-							$sql = "SELECT id,grade,major,name,phone,etc FROM member ORDER BY grade DESC ,major DESC";
+							$sql = "SELECT id,grade,major,name,etc FROM member ORDER BY grade DESC ,major DESC";
 							$result = mysqli_query($conn,$sql);
 							
 							while($row = mysqli_fetch_array($result)){
@@ -90,7 +92,6 @@
 									echo"<td>{$row['grade']}</td>";
 									echo"<td>{$row['major']}</td>";
 									echo"<td>{$row['name']}</td>";
-									echo"<td>{$row['phone']}</td>";
 									echo"<td>{$row['etc']}</td>";
 									$count++;
 								echo"</tr>";

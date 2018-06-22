@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	$conn = mysqli_connect("localhost","root","134330","rnc_cplus");
-	$lecture_number = 14;
+	$sql = "SELECT * FROM cources WHERE lecture_no='{$_POST['SEARCH']}'";
 ?>
 <html>
 	<head>
@@ -38,7 +38,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li><a href="./index.php">소개<span class="sr-only"></span></a></li>
-						<li class="active"  class="dropdown">
+						<li class="dropdown">
 							<a href="./index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="./1_cplus1.php">1학년C++</a></li>
@@ -46,7 +46,7 @@
 							</ul>
 						</li>
 						<li><a href="./member.php">회원현황</a></li>
-						<li><a href="./manage.php">관리</a></li>
+						<li class="active"><a href="./manage.php">관리</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="./resourceCenter.php"> 자료실 </a></li>
@@ -58,88 +58,44 @@
 		<div class="container">
     	<div class="row">
 			<div class="col-md-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h1 class="panel-title">강의목록</h1>
-						<div class="pull-right">
-						</div>
-					</div>
-					<div class="panel-body">
-						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="강의 제목을 입력하세요." />
-					</div>
+				<form action = "manage.php" class="form-inline md-form form-sm active-cyan active-cyan-2" method ="POST">
+			    <div class="form-group">
+			    <i class="fa fa-search" aria-hidden="true"></i>
+			    <input name="SEARCH" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Input lecture_no" aria-label="Search">
+			    </div>
+			    <button type="submit" class="btn btn-info">Search Data</button>
+				</form>
+
 					<table class="table table-hover" id="dev-table">
 						<thead>
 							<tr>
-								<th>number</th>
-								<th>Title</th>
+								<th>번호</th>
+								<th>강의번호</th>
+								<th>학번</th>
+								<th>이름</th>
 							</tr>
 						</thead>
 						<tbody class="lecture-table">
 							<?php
 							$count = 1;
-							$sql = "SELECT title,rink FROM lecture WHERE grade=1 ORDER BY no";
 							$result = mysqli_query($conn,$sql);
 							
 							while($row = mysqli_fetch_array($result)){
-								
-								echo"<tr>";	
-									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo $count; echo"</a></td>"; 
-									echo"<td>";	echo"<a href='"; echo"{$row['rink']}'>"; echo"{$row['title']}"; echo"</a></td>";
+								echo"<tr>";
+									echo"<td>"; echo $count; echo "</td>";
+									echo"<td>{$row['lecture_no']}</td>";
+									echo"<td>{$row['id']}</td>";
+									echo"<td>{$row['name']}</td>";
 									$count++;
 								echo"</tr>";
 							}
 							?>
 						</tbody>
 					</table>
-				</div>
+
 			</div>
 		</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<?php
-					$count = 1;
-					$sql = "SELECT title FROM lecture WHERE lecture_no=$lecture_number";
-					$result = mysqli_query($conn,$sql);
-					
-					while($row = mysqli_fetch_array($result)){
-						echo "<h1>"; echo"{$row['title']}"; echo"</h1>";
-					}
-					?>
-					<hr>
-				</div>
-				<div class="col-sm-12">
-							<?php
-							$sql = "SELECT link FROM powerpoint WHERE lecture_no =$lecture_number";
-							$result = mysqli_query($conn,$sql);
-							
-							while($row = mysqli_fetch_array($result)){
-								echo "{$row['link']}";
-							}
-							?>
-				</div>
-				<div class="col-sm-12">
-					<h3>제4강 예제 코드</h3>
-							<?php
-							$sql = "SELECT title,rink FROM code WHERE lecture_no =$lecture_number";
-							$result = mysqli_query($conn,$sql);
-							
-							echo "<hr>";
-							while($row = mysqli_fetch_array($result)){
-								echo "<li style='font-size : 20px'>"; echo "{$row['title']}"; echo "</li>";
-								echo "<br>";
-								echo "{$row['rink']}";
-								echo "<br>";
-								echo "<hr>";
-							}
-							?>
-				</div>
-				<div class="col-sm-12">
-					<h3>백준 문제 풀러 가기 </h3>
-					<hr>
-					<h4 class="algorithm"> <a href="https://www.acmicpc.net/problem/2441" target="_blank"><span class="glyphicon glyphicon-pencil"></span>  &nbsp;&nbsp; 2441번 별찍기 - 4</a></h4>
-				</div>
-				
-			</div>
+			
 		</div>
 
 		<div class="container">

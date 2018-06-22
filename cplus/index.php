@@ -45,6 +45,7 @@
 							</ul>
 						</li>
 						<li><a href="./member.php">회원현황</a></li>
+						<li><a href="./manage.php">관리</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="./resourceCenter.php"> 자료실 </a></li>
