@@ -82,3 +82,5 @@ CREATE TABLE `member` (
   `etc` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ~~~~
+## 4. ERDiagram
+  ![Alt text](/ERD.png)
