@@ -38,6 +38,9 @@ C++ 수업을 진행하면서 수업에 관련된 자료들을 쉽게 공유하�
    * lecture_no : 강의테이블을 구별하는 lecture_no 입니다.
    * title : 강의 제목이 담겨져 있습니다.
    * rink : 해당 강의 홈페이지의 위치가 담겨져 있습니다.
+      
+   ![Alt text](/lecture.png)
+   
 ~~~ 
 CREATE TABLE `lecture` (
 `no` int(10) NOT NULL,
@@ -54,6 +57,9 @@ CREATE TABLE `lecture` (
    * contents : 예제코드이 어떤 내용을 가지고 있는지에 대한 정보가 담겨져 있습니다.
    * rink : 예제코드의 위치가 담겨져 있습니다.
    * image_file : 예제코드와 관련되어 있는 이미지파일에 대한 정보가 담겨져 있습니다.
+      
+   ![Alt text](/code.png)
+   
 ~~~
 CREATE TABLE `code` (
   `no` int(10) NOT NULL,
@@ -68,6 +74,9 @@ CREATE TABLE `code` (
    * 수업에 쓰이는 powerPoint에 대한 정보가 담겨져있는 테이블입니다.
    * lecture_no : Lecture 테이블의 lecture_no을 외래키로 참조합니다.
    * link : 해당 파워포인트의 주소가 담겨져 있습니다.
+      
+   ![Alt text](/powerpoint.png)
+   
 ~~~~
 CREATE TABLE `powerpoint` (
   `no` int(10) NOT NULL,
@@ -82,6 +91,9 @@ CREATE TABLE `powerpoint` (
    * major : 회원의 전공에 대한 정보가 담겨져 있습니다.
    * name : 회원의 이름에 대한 정보가 담겨져 있습니다.
    * etc : 부가 정보에 대한 정보가 담겨져 있습니다.
+      
+   ![Alt text](/member.png)
+   
 ~~~~
 CREATE TABLE `member` (
   `no` int(10) NOT NULL,
@@ -97,6 +109,9 @@ CREATE TABLE `member` (
    * id : Member 테이블의 id를 외래키로 참조합니다.
    * lecture_no : Lecture 테이블의 lecture_no을 외래키로 참조합니다.
    * name : 학생의 이름이 담겨져 있습니다.
+   
+   ![Alt text](/cources.png)
+   
 ~~~~
 CREATE TABLE `cources` (
   `no` int(11) NOT NULL,
@@ -107,3 +122,18 @@ CREATE TABLE `cources` (
 ~~~~
 ## 4. ERDiagram
   ![Alt text](/ERD.png)
+  
+## 5. 앞으로 해야할 점
+
+* File Table 구축
+  * 프로젝트 file에 대한 테이블을 구축하고 그 소유자에 대한 정보를 Member Table에 대한 정보를 이용하여 참조한다.
+  현재가지고 있는 프로젝트 파일이 작년 프로젝트 파일이라 소유자를 지정하지 못하였다. 따라서 Team Table을 구축하여 
+  작년 Team에 대한 정보를 담고 그 정보를 이용하여 프로젝트 파일 테이블을 구축할 예정이다.
+* 코드 리팩토링
+  * 현재 코드들이 리팩토링 되어있지 않아 후에 데이터가 많아지면 문제가 많이 생긴다. 지금 가장큰 문제중 하나가 
+  네비게이션 바에 메뉴를 하나 추가하면 10개가 넘는 php파일에서 네이베이션 바 부분에 코드를 일일이 삽입해야한다는 점이다.
+  따라서 이부분에 대한 데이터베이스를 구축하여 메뉴를 늘려도 자동으로 나머지 php파일에 일괄적용 될 수 있도록 해야한다.
+* 익명 게시판 추가
+  * 현재 동아리 회원들이 베타 버전을 사용해보고 동아리 회원들의 의견을 들을 수 있는 게시판을 하나 만들어 달라는 요청이 들어왔다.
+  최대한 다양한 의견을 편견 없이 들을 수 있도록 익명성을 보장하는 게시판을 만들 예정이다. 이를 위한 데이터베이스도 구축을 하고
+  동아리 회원들만 쓸수 있도록 Member Table과 연동할 예정이다.
