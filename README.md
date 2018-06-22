@@ -32,3 +32,53 @@ C++ 수업을 진행하면서 수업에 관련된 자료들을 쉽게 공유하�
    * Bootstrap3
    
 ## 3. 테이블 구성
+ * Lecture Table 
+~~~ 
+CREATE TABLE `lecture` (
+`no` int(10) NOT NULL,
+`grade` int(10) NOT NULL,
+`lecture_no` int(10) NOT NULL,
+`title` text NOT NULL,
+`rink` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+~~~
+ * Code Table
+~~~
+CREATE TABLE `code` (
+  `no` int(10) NOT NULL,
+  `lecture_no` int(10) NOT NULL,
+  `title` text NOT NULL,
+  `rink` text NOT NULL,
+  `contents` text,
+  `image_file` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+~~~
+ * powerpoint table
+~~~~
+CREATE TABLE `powerpoint` (
+  `no` int(10) NOT NULL,
+  `lecture_no` int(10) NOT NULL,
+  `link` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+~~~~
+ * cources table
+~~~~
+CREATE TABLE `cources` (
+  `no` int(11) NOT NULL,
+  `id` int(10) NOT NULL,
+  `lecture_no` int(10) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+~~~~
+ * member table
+~~~~
+CREATE TABLE `member` (
+  `no` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
+  `grade` int(10) NOT NULL,
+  `major` varchar(30) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `phone` text NOT NULL,
+  `etc` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+~~~~
