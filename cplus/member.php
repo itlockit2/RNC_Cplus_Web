@@ -75,7 +75,6 @@
 								<th>학년</th>
 								<th>전공</th>
 								<th>이름</th>
-								<th>연락처</th>
 								<th>비고</th>
 							</tr>
 						</thead>
