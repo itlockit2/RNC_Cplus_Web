@@ -217,3 +217,8 @@ int main(){
 학생 5명의 점수가 주어졌을때, 평균 점수를 구하는 프로그램을 작성하시오.
 ```
 
+## 반복문을 연습해보자.
+https://www.acmicpc.net/step/3
+
+## 함수를 연습해보자.
+https://www.acmicpc.net/step/5
